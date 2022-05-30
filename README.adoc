@@ -1,0 +1,24 @@
+= Strictest Next.js Template
+
+This is a Next.js + TypeScript project template that aims to have the strictest rules as possible.
+
+For more information (Japanese only): https://note.gsuke.work/typescript
+
+== Requirements
+
+* Yarn (v1)
+* VSCode (+ recommended extensions)
+
+== Settings
+
+* Strictest TSConfig
+* EditorConfig
+* ESLint
+** Airbnb Style Guide
+** ESLint Plugin TypeScript's recommended configs
+** Next.js' strict config
+* Stylelint
+** Standard SCSS config
+** Recess Property Order
+* Prettier
+* GitHub Actions
