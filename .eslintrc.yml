@@ -1,4 +1,5 @@
 extends:
+  - 'plugin:tailwindcss/recommended'
   - 'airbnb'
   - 'airbnb/hooks'
   - 'airbnb-typescript'
