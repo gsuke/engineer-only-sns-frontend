@@ -2,3 +2,9 @@ extends:
   - 'stylelint-config-standard-scss'
   - 'stylelint-config-recess-order'
   - 'stylelint-config-prettier-scss'
+rules:
+  # https://stackoverflow.com/questions/72161637/unexpected-unknown-at-rule-tailwind-scss-at-rule-no-unknown/72161880
+  'scss/at-rule-no-unknown':
+    - true
+    - ignoreAtRules:
+        - tailwind
