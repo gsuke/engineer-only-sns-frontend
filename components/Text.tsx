@@ -1,10 +1,5 @@
 import Avatar from 'boring-avatars';
-
-type Props = {
-  name: string;
-  id: string;
-  text: string;
-};
+import type Props from '../lib/types/Text';
 
 export default function Text({ name, id, text }: Props) {
   return (
