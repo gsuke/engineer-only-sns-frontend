@@ -10,7 +10,4 @@ jobs:
           node-version-file: '.node-version'
           cache: yarn
       - run: 'yarn install --frozen-lockfile'
-      - run: 'yarn typecheck'
-      - run: 'yarn lint'
-      - run: 'yarn lint:style'
-      - run: 'yarn format:check'
+      - run: 'yarn checkall'
