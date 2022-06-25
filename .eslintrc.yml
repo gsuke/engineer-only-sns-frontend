@@ -8,7 +8,7 @@ extends:
   - 'next/core-web-vitals'
   - 'prettier'
 rules:
-  # https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/402#issuecomment-368305051
+  # For Next.js: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/402#issuecomment-368305051
   'jsx-a11y/anchor-is-valid':
     - error
     - components:
@@ -25,5 +25,10 @@ rules:
     - error
     - prependCustom: true
   'jsx-a11y/label-has-associated-control': off
+  # For setSize() of useSWRInfinite: https://github.com/typescript-eslint/typescript-eslint/pull/4623
+  '@typescript-eslint/no-misused-promises':
+    - error
+    - checksVoidReturn:
+        attributes: false
 parserOptions:
   project: './tsconfig.json'
