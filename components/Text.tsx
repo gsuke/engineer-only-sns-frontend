@@ -1,7 +1,7 @@
 import Avatar from 'boring-avatars';
 import type Props from '../lib/types/Text';
 
-export default function Text({ name, id, text }: Props) {
+export default function Text({ id, text }: Props) {
   return (
     <article className="bg-base-300 text-base-content flex justify-start p-2 my-2 w-full rounded-md transition duration-100">
       <div className="mr-2">
@@ -13,7 +13,8 @@ export default function Text({ name, id, text }: Props) {
         />
       </div>
       <div>
-        <div className="text-primary text-2xl">{name}</div>
+        {/* TODO: name を取得する */}
+        <div className="text-primary text-2xl">名無し</div>
         <div className="text-secondary text-xs">{id}</div>
         <p>{text}</p>
       </div>

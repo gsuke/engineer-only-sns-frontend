@@ -9,7 +9,7 @@ export default function TextList({ texts }: Props) {
   return (
     <>
       {texts.map((text) => (
-        <TextComponent key={text.id} name={text.name} id={text.id} text={text.text} />
+        <TextComponent key={text.id} id={text.id} text={text.text} />
       ))}
     </>
   );

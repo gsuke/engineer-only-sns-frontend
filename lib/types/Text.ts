@@ -1,5 +1,4 @@
 type Text = {
-  name: string;
   id: string;
   text: string;
 };
