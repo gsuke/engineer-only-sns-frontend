@@ -1,4 +1,4 @@
-import type Text from '../lib/types/Text';
+import type Text from '../lib/models/Text';
 import TextComponent from './Text';
 
 type Props = {
@@ -9,7 +9,7 @@ export default function TextList({ texts }: Props) {
   return (
     <>
       {texts.map((text) => (
-        <TextComponent key={text.id} id={text.id} text={text.text} />
+        <TextComponent key={text.id} text={text} />
       ))}
     </>
   );
