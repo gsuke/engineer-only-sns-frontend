@@ -30,5 +30,7 @@ rules:
     - error
     - checksVoidReturn:
         attributes: false
+  # For versatileapi
+  'no-underscore-dangle': off
 parserOptions:
   project: './tsconfig.json'
