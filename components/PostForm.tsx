@@ -49,7 +49,6 @@ export default function PostForm() {
       </button>
       <input
         type="checkbox"
-        id="post-modal"
         className="modal-toggle"
         checked={show}
         onChange={() => {

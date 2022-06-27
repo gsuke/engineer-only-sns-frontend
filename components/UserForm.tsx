@@ -23,7 +23,6 @@ export default function UserForm() {
       </button>
       <input
         type="checkbox"
-        id="user-modal"
         className="modal-toggle"
         checked={show}
         onChange={() => {
