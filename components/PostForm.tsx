@@ -1,13 +1,38 @@
 import { ChangeEvent, useState } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
+import useNewTexts from '../hooks/useNewTexts';
+import { apiUrl } from '../lib/const';
 
 export default function PostForm() {
   const [show, setShow] = useState(false);
   const [text, setText] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const newTexts = useNewTexts();
 
   function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
     setText(e.target.value);
+  }
+
+  async function handleSubmit() {
+    setIsSubmitting(true);
+    await fetch(`${apiUrl}/text`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'HelloWorld',
+      },
+      body: JSON.stringify({ text }),
+    }).then(async (response) => {
+      if (response.ok) {
+        await newTexts.mutate();
+        setShow(false);
+      }
+    });
+    setText('');
+    setIsSubmitting(false);
   }
 
   return (
@@ -22,25 +47,42 @@ export default function PostForm() {
       >
         <FaPencilAlt size={32} />
       </button>
-      <input type="checkbox" id="post-modal" className="modal-toggle" checked={show} />
+      <input
+        type="checkbox"
+        id="post-modal"
+        className="modal-toggle"
+        checked={show}
+        onChange={() => {
+          setShow(false);
+        }}
+      />
 
       {/* モーダルの外側 */}
-      <button
-        type="button"
+      <div
+        role="button"
+        tabIndex={0}
         onClick={() => {
+          setShow(false);
+        }}
+        onKeyDown={() => {
           setShow(false);
         }}
         className="modal cursor-pointer"
       >
         {/* モーダルのメインボックス */}
-        <button
-          type="button"
+        <div
+          role="button"
+          tabIndex={0}
           className="modal-box cursor-auto"
           onClick={(e) => {
             e.stopPropagation();
           }}
+          onKeyDown={(e) => {
+            e.stopPropagation();
+          }}
         >
           <div className="flex justify-between items-center mb-3">
+            {/* 閉じるボタン */}
             <button
               type="button"
               className="btn btn-sm btn-circle"
@@ -50,11 +92,22 @@ export default function PostForm() {
             >
               <MdClose />
             </button>
-            <button type="button" className="btn btn-primary btn-sm">
+
+            {/* 投稿ボタン */}
+            <button
+              type="button"
+              className="btn btn-primary btn-sm"
+              onClick={async () => {
+                await handleSubmit();
+              }}
+              disabled={isSubmitting}
+            >
               <FaPencilAlt className="mr-1" />
               投稿
             </button>
           </div>
+
+          {/* 入力エリア */}
           <textarea
             className="textarea textarea-bordered w-full h-32 resize-none"
             placeholder="文章を入力"
@@ -63,8 +116,8 @@ export default function PostForm() {
               handleChange(e);
             }}
           />
-        </button>
-      </button>
+        </div>
+      </div>
     </>
   );
 }

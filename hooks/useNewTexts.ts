@@ -10,7 +10,7 @@ export default function useNewTexts() {
 
   const config: SWRConfiguration = { refreshInterval };
 
-  const { data, error } = useSWR<Text[], Error>(
+  const { data, error, mutate } = useSWR<Text[], Error>(
     `/text/all?$orderby=_created_at desc&$limit=${textCountPerPage}`,
     fetcher,
     config,
@@ -31,6 +31,7 @@ export default function useNewTexts() {
   return {
     texts: newTexts,
     error,
+    mutate,
     isLoading: !error && !data,
     isTooManyTexts,
   };
