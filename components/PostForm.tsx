@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
 
 export default function PostForm() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [show, setShow] = useState(false);
+  const [text, setText] = useState('');
+
+  function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
+    setText(e.target.value);
+  }
 
   return (
     <>
@@ -12,18 +17,18 @@ export default function PostForm() {
         type="button"
         className="btn btn-circle btn-lg btn-primary fixed right-3 bottom-3"
         onClick={() => {
-          setIsOpen(true);
+          setShow(true);
         }}
       >
         <FaPencilAlt size={32} />
       </button>
-      <input type="checkbox" id="post-modal" className="modal-toggle" checked={isOpen} />
+      <input type="checkbox" id="post-modal" className="modal-toggle" checked={show} />
 
       {/* モーダルの外側 */}
       <button
         type="button"
         onClick={() => {
-          setIsOpen(false);
+          setShow(false);
         }}
         className="modal cursor-pointer"
       >
@@ -40,7 +45,7 @@ export default function PostForm() {
               type="button"
               className="btn btn-sm btn-circle"
               onClick={() => {
-                setIsOpen(false);
+                setShow(false);
               }}
             >
               <MdClose />
@@ -53,6 +58,10 @@ export default function PostForm() {
           <textarea
             className="textarea textarea-bordered w-full h-32 resize-none"
             placeholder="文章を入力"
+            value={text}
+            onChange={(e) => {
+              handleChange(e);
+            }}
           />
         </button>
       </button>
