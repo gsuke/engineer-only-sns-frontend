@@ -1,10 +1,15 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
+import { IconContext } from 'react-icons';
+import { useMemo } from 'react';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  /* eslint-disable react/jsx-props-no-spreading */
-  return <Component {...pageProps} />;
-  /* eslint-enable react/jsx-props-no-spreading */
+export default function MyApp({ Component, pageProps }: AppProps) {
+  const iconContextValue = useMemo(() => ({ className: 'inline align-middle' }), []);
+
+  return (
+    <IconContext.Provider value={iconContextValue}>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <Component {...pageProps} />
+    </IconContext.Provider>
+  );
 }
-
-export default MyApp;
