@@ -1,24 +1,43 @@
+import { useState } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
 
 export default function PostForm() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       {/* Button */}
-      <label
-        htmlFor="post-modal"
+      <button
+        type="button"
         className="btn btn-circle btn-lg btn-primary fixed right-3 bottom-3"
+        onClick={() => {
+          setIsOpen(true);
+        }}
       >
         <FaPencilAlt size={32} />
-      </label>
-      <input type="checkbox" id="post-modal" className="modal-toggle" />
+      </button>
+      <input type="checkbox" id="post-modal" className="modal-toggle" checked={isOpen} />
+
       {/* Modal */}
-      <label htmlFor="post-modal" className="modal cursor-pointer">
+      <button
+        type="button"
+        onClick={() => {
+          setIsOpen(false);
+        }}
+        className="modal cursor-pointer"
+      >
         <label className="modal-box" htmlFor="">
           <div className="flex justify-between items-center mb-3">
-            <label htmlFor="post-modal" className="btn btn-sm btn-circle">
+            <button
+              type="button"
+              className="btn btn-sm btn-circle"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
               <MdClose />
-            </label>
+            </button>
             <button type="button" className="btn btn-primary btn-sm">
               <FaPencilAlt className="mr-1" />
               投稿
@@ -29,7 +48,7 @@ export default function PostForm() {
             placeholder="文章を入力"
           />
         </label>
-      </label>
+      </button>
     </>
   );
 }
