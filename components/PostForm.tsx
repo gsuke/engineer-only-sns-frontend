@@ -7,7 +7,7 @@ export default function PostForm() {
 
   return (
     <>
-      {/* Button */}
+      {/* ボタン */}
       <button
         type="button"
         className="btn btn-circle btn-lg btn-primary fixed right-3 bottom-3"
@@ -19,7 +19,7 @@ export default function PostForm() {
       </button>
       <input type="checkbox" id="post-modal" className="modal-toggle" checked={isOpen} />
 
-      {/* Modal */}
+      {/* モーダルの外側 */}
       <button
         type="button"
         onClick={() => {
@@ -27,7 +27,14 @@ export default function PostForm() {
         }}
         className="modal cursor-pointer"
       >
-        <label className="modal-box" htmlFor="">
+        {/* モーダルのメインボックス */}
+        <button
+          type="button"
+          className="modal-box cursor-auto"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
           <div className="flex justify-between items-center mb-3">
             <button
               type="button"
@@ -47,7 +54,7 @@ export default function PostForm() {
             className="textarea textarea-bordered w-full h-32 resize-none"
             placeholder="文章を入力"
           />
-        </label>
+        </button>
       </button>
     </>
   );
