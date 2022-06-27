@@ -1,9 +1,15 @@
-function Home() {
+import NavBar from '../components/NavBar';
+import PostForm from '../components/PostForm';
+import TextList from '../components/TextList';
+
+export default function Home() {
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <NavBar />
+      <div className="flex justify-center">
+        <TextList />
+      </div>
+      <PostForm />
     </div>
   );
 }
-
-export default Home;
