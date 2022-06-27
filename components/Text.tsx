@@ -1,6 +1,7 @@
 import Avatar from 'boring-avatars';
 import { format, parseISO } from 'date-fns';
 import type TextType from '../lib/models/Text';
+import UserName from './UserName';
 
 type Props = {
   text: TextType;
@@ -21,12 +22,13 @@ export default function Text({ text }: Props) {
       </div>
       <div className="grow">
         <div className="flex justify-between">
-          {/* TODO: name を取得する */}
-          <div className="text-primary text-2xl">名無し</div>
+          <div className="text-primary text-2xl">
+            <UserName userId={text._user_id} />
+          </div>
           <time>{formattedDate}</time>
         </div>
 
-        <div className="text-secondary text-xs">{text._user_id}</div>
+        <div className="text-secondary text-xs">UserID: {text._user_id}</div>
         <p>{text.text}</p>
       </div>
     </article>
