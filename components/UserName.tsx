@@ -1,6 +1,6 @@
 import { FaQuestion } from 'react-icons/fa';
 import { BiError } from 'react-icons/bi';
-import { AiOutlineLoading } from 'react-icons/ai';
+import { VscLoading } from 'react-icons/vsc';
 import useUser from '../hooks/useUser';
 
 type Props = {
@@ -22,7 +22,7 @@ export default function UserName({ userId }: Props) {
   if (isLoading) {
     return (
       <span className="text-accent">
-        <AiOutlineLoading className="mr-1" />
+        <VscLoading className="mr-1 animate-spin" />
         読み込み中
       </span>
     );

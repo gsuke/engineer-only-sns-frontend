@@ -22,7 +22,7 @@ export default function Text({ text }: Props) {
       </div>
       <div className="grow">
         <div className="flex justify-between">
-          <div className="text-primary text-2xl">
+          <div className="text-2xl">
             <UserName userId={text._user_id} />
           </div>
           <time>{formattedDate}</time>
