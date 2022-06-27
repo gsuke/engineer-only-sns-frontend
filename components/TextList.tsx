@@ -5,7 +5,7 @@ import useTexts from '../hooks/useTexts';
 
 export default function TextList() {
   const oldTexts = useTexts();
-  const newTexts = useNewTexts(oldTexts.texts);
+  const newTexts = useNewTexts();
 
   // 新規投稿が溜まった場合は1ページに戻し、再読み込みをかける
   useEffect(() => {
