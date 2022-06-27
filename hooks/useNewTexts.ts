@@ -3,8 +3,11 @@ import type { SWRConfiguration } from 'swr';
 import fetcher from '../lib/fetcher';
 import type Text from '../lib/models/Text';
 import { refreshInterval, textCountPerPage } from '../lib/const';
+import useTexts from './useTexts';
 
-export default function useNewTexts(oldTexts: Text[]) {
+export default function useNewTexts() {
+  const oldTexts = useTexts();
+
   const config: SWRConfiguration = { refreshInterval };
 
   const { data, error } = useSWR<Text[], Error>(
@@ -17,7 +20,7 @@ export default function useNewTexts(oldTexts: Text[]) {
   const newTextsMap = new Map(data?.map((text) => [text.id, text]));
 
   // 古い投稿と重複するものは消していく
-  oldTexts.forEach((oldText) => {
+  oldTexts.texts.forEach((oldText) => {
     newTextsMap.delete(oldText.id);
   });
 
