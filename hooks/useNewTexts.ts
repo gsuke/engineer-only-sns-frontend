@@ -23,9 +23,12 @@ export default function useNewTexts(oldTexts: Text[]) {
 
   const newTexts = Array.from(newTextsMap.values());
 
+  const isTooManyTexts = newTexts.length >= textCountPerPage;
+
   return {
     texts: newTexts,
     error,
     isLoading: !error && !data,
+    isTooManyTexts,
   };
 }

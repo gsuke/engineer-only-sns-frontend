@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import PostForm from '../components/PostForm';
 import TextList from '../components/TextList';
@@ -7,6 +8,16 @@ import useTexts from '../hooks/useTexts';
 export default function Home() {
   const useTextsResult = useTexts();
   const useNewTextsResult = useNewTexts(useTextsResult.texts);
+
+  // 新規投稿が溜まった場合は1ページに戻し、再読み込みをかける
+  useEffect(() => {
+    void (async () => {
+      if (useNewTextsResult.isTooManyTexts) {
+        await useTextsResult.setSize(1);
+        await useTextsResult.mutate();
+      }
+    })();
+  }, [useNewTextsResult.isTooManyTexts, useTextsResult]);
 
   const allTexts = [...useNewTextsResult.texts, ...useTextsResult.texts];
 

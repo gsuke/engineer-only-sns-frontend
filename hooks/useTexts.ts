@@ -21,7 +21,7 @@ export default function useTexts() {
     revalidateFirstPage: false,
   };
 
-  const { data, error, isValidating, size, setSize } = useSWRInfinite<Text, Error>(
+  const { data, error, isValidating, size, setSize, mutate } = useSWRInfinite<Text, Error>(
     getKey,
     fetcher,
     option,
@@ -40,6 +40,7 @@ export default function useTexts() {
     isValidating,
     size,
     setSize,
+    mutate,
     isLoadingInitialData,
     isLoadingMore,
   };
