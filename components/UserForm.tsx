@@ -2,12 +2,41 @@ import { useState } from 'react';
 import { GrUserSettings } from 'react-icons/gr';
 import { MdClose } from 'react-icons/md';
 import { FaPencilAlt } from 'react-icons/fa';
+import axios from 'axios';
+import { useSWRConfig } from 'swr';
+import { apiUrl } from '../lib/const';
 
 export default function UserForm() {
   const [show, setShow] = useState(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { mutate } = useSWRConfig();
+
+  async function handleSubmit() {
+    setIsSubmitting(true);
+    type ResponseType = {
+      id: string;
+    };
+    // TODO: 他のAPI実行ロジックもaxiosベースに置換する
+    await axios
+      .put<ResponseType>(
+        `${apiUrl}/user/create_user`,
+        { name, description },
+        {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then(async (response) => {
+        await mutate(`/user/${response.data.id}`);
+        setShow(false);
+      });
+    setIsSubmitting(false);
+  }
 
   return (
     <>
@@ -66,11 +95,13 @@ export default function UserForm() {
               <MdClose />
             </button>
 
-            {/* 投稿ボタン */}
+            {/* ユーザ情報変更ボタン */}
             <button
               type="button"
               className="btn btn-primary btn-sm"
-              onClick={() => {}}
+              onClick={async () => {
+                await handleSubmit();
+              }}
               disabled={isSubmitting}
             >
               <FaPencilAlt className="mr-1" />
