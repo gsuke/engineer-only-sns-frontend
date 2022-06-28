@@ -3,6 +3,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import TextComponent from './Text';
 import useNewTexts from '../hooks/useNewTexts';
 import useTexts from '../hooks/useTexts';
+import { maxPage } from '../lib/const';
 
 export default function TextList() {
   const oldTexts = useTexts();
@@ -34,7 +35,7 @@ export default function TextList() {
   );
 
   // 5ページ目以降は読み込まない
-  const hasMore = !oldTexts.isReachingEnd && oldTexts.size < 5;
+  const hasMore = !oldTexts.isReachingEnd && oldTexts.size < maxPage;
 
   return (
     <main className="m-2 w-full max-w-xl">
