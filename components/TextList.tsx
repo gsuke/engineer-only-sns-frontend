@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import TextComponent from './Text';
 import useNewTexts from '../hooks/useNewTexts';
 import useTexts from '../hooks/useTexts';
+import { maxPage } from '../lib/const';
 
 export default function TextList() {
   const oldTexts = useTexts();
@@ -17,6 +19,13 @@ export default function TextList() {
     })();
   }, [newTexts.isTooManyTexts, oldTexts]);
 
+  async function loadNextPage() {
+    if (oldTexts.isLoading) {
+      return;
+    }
+    await oldTexts.setSize(oldTexts.size + 1);
+  }
+
   const texts = [...newTexts.texts, ...oldTexts.texts];
 
   // 新規投稿がある場合、textが重複して読み込まれるので、それらを除去する。
@@ -25,24 +34,23 @@ export default function TextList() {
     new Map(texts.map((text) => [text.id, text])).values(),
   );
 
+  // 5ページ目以降は読み込まない
+  const hasMore = !oldTexts.isReachingEnd && oldTexts.size < maxPage;
+
   return (
     <main className="m-2 w-full max-w-xl">
-      {uniqueTexts.map((text) => (
-        <TextComponent key={text.id} text={text} />
-      ))}
-
-      {/* もっと読み込むボタン */}
-      {!oldTexts.isLoadingMore && (
-        <button
-          type="button"
-          className="btn"
-          onClick={async () => {
-            await oldTexts.setSize(oldTexts.size + 1);
-          }}
-        >
-          もっと読み込む
-        </button>
-      )}
+      <InfiniteScroll
+        dataLength={uniqueTexts.length}
+        next={async () => {
+          await loadNextPage();
+        }}
+        hasMore={hasMore}
+        loader={<p>Loading</p>}
+      >
+        {uniqueTexts.map((text) => (
+          <TextComponent key={text.id} text={text} />
+        ))}
+      </InfiniteScroll>
     </main>
   );
 }

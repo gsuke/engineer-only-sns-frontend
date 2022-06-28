@@ -21,15 +21,20 @@ export default function useTexts() {
     revalidateFirstPage: false,
   };
 
-  const { data, error, isValidating, size, setSize, mutate } = useSWRInfinite<Text, Error>(
+  const { data, error, isValidating, size, setSize, mutate } = useSWRInfinite<Text[], Error>(
     getKey,
     fetcher,
     option,
   );
 
+  // 状態を使いやすくまとめる
   const isLoadingInitialData = !data && !error;
-  const isLoadingMore =
+  const isLoading =
     isLoadingInitialData || (size > 0 && data && typeof data[size - 1] === 'undefined');
+  const isEmpty = (data ?? []).length === 0;
+
+  const isReachingEnd =
+    isEmpty || ((data ?? [[]])[(data ?? [[]]).length - 1] ?? []).length < textCountPerPage;
 
   // ページ毎に区切られたtextsを平坦化する
   const texts = data?.flat() || [];
@@ -41,7 +46,7 @@ export default function useTexts() {
     size,
     setSize,
     mutate,
-    isLoadingInitialData,
-    isLoadingMore,
+    isLoading,
+    isReachingEnd,
   };
 }
