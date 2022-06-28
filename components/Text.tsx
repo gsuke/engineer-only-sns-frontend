@@ -22,14 +22,14 @@ export default function Text({ text }: Props) {
       </div>
       <div className="grow">
         <div className="flex justify-between">
-          <div className="text-2xl">
+          <div className="w-80 text-2xl truncate">
             <UserName userId={text._user_id} />
           </div>
           <time>{formattedDate}</time>
         </div>
 
         <div className="text-secondary text-xs">UserID: {text._user_id}</div>
-        <p>{text.text}</p>
+        <p className="break-all">{text.text}</p>
       </div>
     </article>
   );
