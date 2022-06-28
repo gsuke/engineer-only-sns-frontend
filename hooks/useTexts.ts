@@ -3,14 +3,15 @@ import fetcher from '../lib/fetcher';
 import type Text from '../lib/models/Text';
 import { textCountPerPage } from '../lib/const';
 
-export default function useTexts() {
+export default function useTexts(userId?: string) {
   const getKey: SWRInfiniteKeyLoader = (pageIndex, previousPageData: Text[] | null) => {
     // 最後に到達した場合
     if (previousPageData && !previousPageData.length) return null;
 
     // SWRキーを返却
     const skipCount = pageIndex * textCountPerPage;
-    return `/text/all?$orderby=_created_at desc&$limit=${textCountPerPage}&$skip=${skipCount}`;
+    const userQuery = userId ? `&$filter=_user_id eq '${userId}'` : '';
+    return `/text/all?$orderby=_created_at desc&$limit=${textCountPerPage}&$skip=${skipCount}${userQuery}`;
   };
 
   // 各ページは全てイミュータブルとし、新規投稿への対応は別途行う

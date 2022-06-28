@@ -5,9 +5,13 @@ import useNewTexts from '../hooks/useNewTexts';
 import useTexts from '../hooks/useTexts';
 import { maxPage } from '../lib/const';
 
-export default function TextList() {
-  const oldTexts = useTexts();
-  const newTexts = useNewTexts();
+type Props = {
+  userId?: string;
+};
+
+export default function TextList({ userId }: Props) {
+  const oldTexts = useTexts(userId);
+  const newTexts = useNewTexts(userId);
 
   // 新規投稿が溜まった場合は1ページに戻し、再読み込みをかける
   useEffect(() => {
@@ -54,3 +58,7 @@ export default function TextList() {
     </main>
   );
 }
+
+TextList.defaultProps = {
+  userId: undefined,
+};

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import NavBar from '../../components/NavBar';
+import TextList from '../../components/TextList';
 
 export default function UserPage() {
   const router = useRouter();
@@ -13,7 +14,9 @@ export default function UserPage() {
   return (
     <div>
       <NavBar />
-      <div className="flex justify-center">こんにちは {id}</div>
+      <div className="flex justify-center">
+        <TextList userId={id} />
+      </div>
     </div>
   );
 }
