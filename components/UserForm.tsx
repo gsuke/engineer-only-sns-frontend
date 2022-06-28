@@ -1,37 +1,40 @@
-import { ChangeEvent, useState } from 'react';
-import { FaPencilAlt } from 'react-icons/fa';
+import { useState } from 'react';
+import { GrUserSettings } from 'react-icons/gr';
 import { MdClose } from 'react-icons/md';
-import useNewTexts from '../hooks/useNewTexts';
+import { FaPencilAlt } from 'react-icons/fa';
+import axios from 'axios';
+import { useSWRConfig } from 'swr';
 import { apiUrl } from '../lib/const';
 
-export default function PostForm() {
+export default function UserForm() {
   const [show, setShow] = useState(false);
-  const [text, setText] = useState('');
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const newTexts = useNewTexts();
-
-  function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
-    setText(e.target.value);
-  }
+  const { mutate } = useSWRConfig();
 
   async function handleSubmit() {
     setIsSubmitting(true);
-    await fetch(`${apiUrl}/text`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: 'HelloWorld',
-      },
-      body: JSON.stringify({ text }),
-    }).then(async (response) => {
-      if (response.ok) {
-        await newTexts.mutate();
+    type ResponseType = {
+      id: string;
+    };
+    // TODO: 他のAPI実行ロジックもaxiosベースに置換する
+    await axios
+      .put<ResponseType>(
+        `${apiUrl}/user/create_user`,
+        { name, description },
+        {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then(async (response) => {
+        await mutate(`/user/${response.data.id}`);
         setShow(false);
-      }
-    });
-    setText('');
+      });
     setIsSubmitting(false);
   }
 
@@ -40,12 +43,12 @@ export default function PostForm() {
       {/* ボタン */}
       <button
         type="button"
-        className="btn btn-circle btn-lg btn-primary fixed right-3 bottom-3"
+        className="btn btn-circle btn-lg btn-primary fixed bottom-3 left-3"
         onClick={() => {
           setShow(true);
         }}
       >
-        <FaPencilAlt size={32} />
+        <GrUserSettings size={32} />
       </button>
       <input
         type="checkbox"
@@ -92,7 +95,7 @@ export default function PostForm() {
               <MdClose />
             </button>
 
-            {/* 投稿ボタン */}
+            {/* ユーザ情報変更ボタン */}
             <button
               type="button"
               className="btn btn-primary btn-sm"
@@ -102,19 +105,36 @@ export default function PostForm() {
               disabled={isSubmitting}
             >
               <FaPencilAlt className="mr-1" />
-              投稿
+              ユーザ情報を変更する
             </button>
           </div>
 
           {/* 入力エリア */}
-          <textarea
-            className="textarea textarea-bordered w-full h-32 resize-none"
-            placeholder="文章を入力"
-            value={text}
-            onChange={(e) => {
-              handleChange(e);
-            }}
-          />
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">名前</span>
+            </label>
+            <input
+              type="text"
+              className="input input-bordered w-full"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
+          </div>
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">自己紹介文</span>
+            </label>
+            <textarea
+              className="textarea textarea-bordered w-full h-32 resize-none"
+              value={description}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+            />
+          </div>
         </div>
       </div>
     </>
