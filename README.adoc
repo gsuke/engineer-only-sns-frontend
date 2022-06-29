@@ -1,24 +1,48 @@
-= Strictest Next.js Template
+= 「エンジニア・プログラマにしか使えないSNS」のクライアント
 
-This is a Next.js + TypeScript project template that aims to have the strictest rules as possible.
+URL: hoge
 
-For more information (Japanese only): https://note.gsuke.work/typescript
+link:https://qiita.com/HawkClaws/items/599d7666f55e79ef7f56[「エンジニア・プログラマにしか使えないSNSを作ってみた話」] のクライアントを作成しました。
 
-== Requirements
+== 注目ポイント
 
-* Yarn (v1)
-* VSCode (+ recommended extensions)
+* ページング処理
+** 無限スクロールを採用しているため、直感的に過去投稿を閲覧できる。
+** 途中で新規投稿が追加された場合でも、取得される投稿が重複したり欠落したりしない。
+* リクエストの送信を最小限にしてサーバーに負担をかけないようにしている。
+* Lint, CIといったエコシステムを活用し、開発者体験を向上させている。
+* モダンなフロントエンド技術を活用することで保守性・拡張性の高いソースコードになっている。
+* Tailwind CSS, daisyUI の利点を活かし、最低限の労力で独自のデザインを実現している。
 
-== Settings
+== 使用した技術
 
-* Strictest TSConfig
-* EditorConfig
+=== 言語
+
+* TypeScript
+
+=== フレームワーク / ライブラリ
+
+* React
+* Next.js
+* Tailwind CSS
+* daisyUI
+* SWR
+
+=== Lint / CI
+
 * ESLint
-** Airbnb Style Guide
-** ESLint Plugin TypeScript's recommended configs
-** Next.js' strict config
-* Stylelint
-** Standard SCSS config
-** Recess Property Order
 * Prettier
+* EditorConfig
 * GitHub Actions
+
+== 開発
+
+=== 必要なもの
+
+* Node.js 16
+* Yarn (v1)
+* VSCode (+ 推奨拡張機能)
+
+=== ローカル実行
+
+`yarn dev`
