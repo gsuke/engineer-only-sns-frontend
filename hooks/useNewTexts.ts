@@ -5,13 +5,14 @@ import type Text from '../lib/models/Text';
 import { refreshInterval, textCountPerPage } from '../lib/const';
 import useTexts from './useTexts';
 
-export default function useNewTexts() {
+export default function useNewTexts(userId?: string) {
   const oldTexts = useTexts();
 
   const config: SWRConfiguration = { refreshInterval };
 
   const { data, error, mutate } = useSWR<Text[], Error>(
-    `/text/all?$orderby=_created_at desc&$limit=${textCountPerPage}`,
+    // ユーザページでは新規投稿を取得しない
+    userId ? null : `/text/all?$orderby=_created_at desc&$limit=${textCountPerPage}`,
     fetcher,
     config,
   );
