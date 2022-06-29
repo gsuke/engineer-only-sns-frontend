@@ -1,6 +1,7 @@
 import { format, parseISO } from 'date-fns';
 import type TextType from '../lib/models/Text';
 import UserAvatar from './UserAvatar';
+import UserLink from './UserLink';
 import UserName from './UserName';
 
 type Props = {
@@ -13,12 +14,16 @@ export default function Text({ text }: Props) {
   return (
     <article className="bg-base-300 text-base-content flex justify-start p-2 my-2 w-full rounded-md">
       <div className="mr-2">
-        <UserAvatar userId={text._user_id} size={64} />
+        <UserLink userId={text._user_id}>
+          <UserAvatar userId={text._user_id} size={64} />
+        </UserLink>
       </div>
       <div className="grow">
         <div className="flex justify-between">
           <div className="w-80 text-2xl truncate">
-            <UserName userId={text._user_id} />
+            <UserLink userId={text._user_id}>
+              <UserName userId={text._user_id} />
+            </UserLink>
           </div>
           <time>{formattedDate}</time>
         </div>
