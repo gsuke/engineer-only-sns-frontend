@@ -1,4 +1,3 @@
-import Avatar from 'boring-avatars';
 import { format, parseISO } from 'date-fns';
 import type TextType from '../lib/models/Text';
 import UserAvatar from './UserAvatar';
@@ -12,7 +11,7 @@ export default function Text({ text }: Props) {
   const formattedDate = format(parseISO(text._created_at), 'yyyy/MM/dd HH:mm');
 
   return (
-    <article className="bg-base-300 text-base-content flex justify-start p-2 my-2 w-full rounded-md transition duration-100">
+    <article className="bg-base-300 text-base-content flex justify-start p-2 my-2 w-full rounded-md">
       <div className="mr-2">
         <UserAvatar userId={text._user_id} size={64} />
       </div>

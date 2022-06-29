@@ -42,20 +42,18 @@ export default function TextList({ userId }: Props) {
   const hasMore = !oldTexts.isReachingEnd && oldTexts.size < maxPage;
 
   return (
-    <main className="m-2 w-full max-w-xl">
-      <InfiniteScroll
-        dataLength={uniqueTexts.length}
-        next={async () => {
-          await loadNextPage();
-        }}
-        hasMore={hasMore}
-        loader={<p>Loading</p>}
-      >
-        {uniqueTexts.map((text) => (
-          <TextComponent key={text.id} text={text} />
-        ))}
-      </InfiniteScroll>
-    </main>
+    <InfiniteScroll
+      dataLength={uniqueTexts.length}
+      next={async () => {
+        await loadNextPage();
+      }}
+      hasMore={hasMore}
+      loader={<p>Loading</p>}
+    >
+      {uniqueTexts.map((text) => (
+        <TextComponent key={text.id} text={text} />
+      ))}
+    </InfiniteScroll>
   );
 }
 
