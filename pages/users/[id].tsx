@@ -24,7 +24,7 @@ export default function UserPage() {
       <Container>
         {/* ユーザプロフィール */}
         <article className="my-8 mx-2 w-full">
-          <div className="flex justify-start">
+          <div className="flex justify-center">
             {/* 左側にアバター */}
             <div className="mr-2">
               <UserAvatar userId={id} size={64} />
