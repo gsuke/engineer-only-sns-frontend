@@ -7,11 +7,7 @@ export default function NavBar() {
       <Link href="/">
         <a className="text-3xl font-bold normal-case">Engineer Only SNS</a>
       </Link>
-      <a
-        href="https://github.com/gsuke/engineer-only-sns-frontend"
-        target="_blank"
-        rel="noreferrer"
-      >
+      <a href="https://github.com/gsuke/engineer-sns-client" target="_blank" rel="noreferrer">
         <FaGithub size={40} />
       </a>
     </nav>
