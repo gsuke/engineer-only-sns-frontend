@@ -1,6 +1,6 @@
 = 「エンジニア・プログラマにしか使えないSNS」のクライアント
 
-URL: hoge
+デプロイURL: https://engineer-sns-client-gsuke.vercel.app
 
 link:https://qiita.com/HawkClaws/items/599d7666f55e79ef7f56[「エンジニア・プログラマにしか使えないSNSを作ってみた話」] のクライアントを作成しました。
 
