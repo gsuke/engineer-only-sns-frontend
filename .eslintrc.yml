@@ -1,4 +1,5 @@
 extends:
+  - 'plugin:tailwindcss/recommended'
   - 'airbnb'
   - 'airbnb/hooks'
   - 'airbnb-typescript'
@@ -7,7 +8,16 @@ extends:
   - 'next/core-web-vitals'
   - 'prettier'
 rules:
-  # https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/402#issuecomment-368305051
+  # To execute async process in onClick: https://github.com/typescript-eslint/typescript-eslint/pull/4623
+  '@typescript-eslint/no-misused-promises':
+    - error
+    - checksVoidReturn:
+        attributes: false
+  # To execute async process in useEffect(): https://typescript-eslint.io/rules/no-floating-promises/#ignorevoid
+  'no-void':
+    - error
+    - allowAsStatement: true
+  # For Next.js: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/402#issuecomment-368305051
   'jsx-a11y/anchor-is-valid':
     - error
     - components:
@@ -18,5 +28,13 @@ rules:
       aspects:
         - invalidHref
         - preferButton
+  # For daisyUI
+  'tailwindcss/no-custom-classname': off
+  'tailwindcss/classnames-order':
+    - error
+    - prependCustom: true
+  'jsx-a11y/label-has-associated-control': off
+  # For versatileapi
+  'no-underscore-dangle': off
 parserOptions:
   project: './tsconfig.json'
