@@ -20,7 +20,7 @@ export default function Text({ text }: Props) {
       </div>
       <div className="grow">
         <div className="flex justify-between">
-          <div className="text-2xl truncate">
+          <div className="text-lg truncate">
             <UserLink userId={text._user_id}>
               <UserName userId={text._user_id} />
             </UserLink>
