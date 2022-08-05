@@ -20,12 +20,12 @@ export default function Text({ text }: Props) {
       </div>
       <div className="grow">
         <div className="flex justify-between">
-          <div className="w-80 text-2xl truncate">
+          <div className="text-2xl truncate">
             <UserLink userId={text._user_id}>
               <UserName userId={text._user_id} />
             </UserLink>
           </div>
-          <time>{formattedDate}</time>
+          <time className="text-sm">{formattedDate}</time>
         </div>
 
         <div className="text-secondary text-xs">UserID: {text._user_id}</div>
