@@ -13,12 +13,16 @@ export default function Text({ text }: Props) {
 
   return (
     <article className="bg-base-300 text-base-content flex justify-start p-2 my-2 w-full rounded-md">
+      {/* ユーザアイコン */}
       <div className="mr-2">
         <UserLink userId={text._user_id}>
           <UserAvatar userId={text._user_id} size={64} />
         </UserLink>
       </div>
+
+      {/* メイン */}
       <div className="grow">
+        {/* 名前 + 時刻 */}
         <div className="flex justify-between">
           <div className="text-lg truncate">
             <UserLink userId={text._user_id}>
@@ -28,7 +32,10 @@ export default function Text({ text }: Props) {
           <time className="text-sm">{formattedDate}</time>
         </div>
 
+        {/* UserID */}
         <div className="text-secondary text-xs">UserID: {text._user_id}</div>
+
+        {/* 本文 */}
         <p className="break-all">{text.text}</p>
       </div>
     </article>
