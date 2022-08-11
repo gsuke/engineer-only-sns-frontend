@@ -21,7 +21,7 @@ export default function Text({ text }: Props) {
       </div>
 
       {/* メイン */}
-      <div className="grow">
+      <div className="grow min-w-0">
         {/* 名前 + 時刻 */}
         <div className="flex justify-between">
           <div className="text-lg truncate">
