@@ -33,7 +33,7 @@ export default function Text({ text }: Props) {
         </div>
 
         {/* UserID */}
-        <div className="text-secondary text-xs">UserID: {text._user_id}</div>
+        <div className="text-secondary text-xs truncate">UserID: {text._user_id}</div>
 
         {/* 本文 */}
         <p className="break-all">{text.text}</p>
