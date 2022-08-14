@@ -4,6 +4,7 @@ import { MdClose } from 'react-icons/md';
 import useNewTexts from '../hooks/useNewTexts';
 import { apiUrl } from '../lib/const';
 import FloatingButton from './FloatingButton';
+import Modal from './Modal';
 
 export default function PostForm() {
   const [show, setShow] = useState(false);
@@ -48,76 +49,44 @@ export default function PostForm() {
         <FaPencilAlt size={32} />
       </FloatingButton>
 
-      <input
-        type="checkbox"
-        className="modal-toggle"
-        checked={show}
-        onChange={() => {
-          setShow(false);
-        }}
-      />
-
-      {/* モーダルの外側 */}
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={() => {
-          setShow(false);
-        }}
-        onKeyDown={() => {
-          setShow(false);
-        }}
-        className="modal cursor-pointer"
-      >
-        {/* モーダルのメインボックス */}
-        <div
-          role="button"
-          tabIndex={0}
-          className="modal-box cursor-auto"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-          onKeyDown={(e) => {
-            e.stopPropagation();
-          }}
-        >
-          <div className="flex justify-between items-center mb-3">
-            {/* 閉じるボタン */}
-            <button
-              type="button"
-              className="btn btn-sm btn-circle"
-              onClick={() => {
-                setShow(false);
-              }}
-            >
-              <MdClose />
-            </button>
-
-            {/* 投稿ボタン */}
-            <button
-              type="button"
-              className="btn btn-primary btn-sm"
-              onClick={async () => {
-                await handleSubmit();
-              }}
-              disabled={isSubmitting}
-            >
-              <FaPencilAlt className="mr-1" />
-              投稿
-            </button>
-          </div>
-
-          {/* 入力エリア */}
-          <textarea
-            className="textarea textarea-bordered w-full h-32 resize-none"
-            placeholder="文章を入力"
-            value={text}
-            onChange={(e) => {
-              handleChange(e);
+      <Modal show={show} setShow={setShow}>
+        {/* 上部 */}
+        <div className="flex justify-between items-center mb-3">
+          {/* 閉じるボタン */}
+          <button
+            type="button"
+            className="btn btn-sm btn-circle"
+            onClick={() => {
+              setShow(false);
             }}
-          />
+          >
+            <MdClose />
+          </button>
+
+          {/* 投稿ボタン */}
+          <button
+            type="button"
+            className="btn btn-primary btn-sm"
+            onClick={async () => {
+              await handleSubmit();
+            }}
+            disabled={isSubmitting}
+          >
+            <FaPencilAlt className="mr-1" />
+            投稿
+          </button>
         </div>
-      </div>
+
+        {/* 入力エリア */}
+        <textarea
+          className="textarea textarea-bordered w-full h-32 resize-none"
+          placeholder="文章を入力"
+          value={text}
+          onChange={(e) => {
+            handleChange(e);
+          }}
+        />
+      </Modal>
     </>
   );
 }

@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useSWRConfig } from 'swr';
 import { apiUrl } from '../lib/const';
 import FloatingButton from './FloatingButton';
+import Modal from './Modal';
 
 export default function UserForm() {
   const [show, setShow] = useState(false);
@@ -51,93 +52,61 @@ export default function UserForm() {
         <GrUserSettings size={32} />
       </FloatingButton>
 
-      <input
-        type="checkbox"
-        className="modal-toggle"
-        checked={show}
-        onChange={() => {
-          setShow(false);
-        }}
-      />
+      <Modal show={show} setShow={setShow}>
+        {/* 上部 */}
+        <div className="flex justify-between items-center mb-3">
+          {/* 閉じるボタン */}
+          <button
+            type="button"
+            className="btn btn-sm btn-circle"
+            onClick={() => {
+              setShow(false);
+            }}
+          >
+            <MdClose />
+          </button>
 
-      {/* モーダルの外側 */}
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={() => {
-          setShow(false);
-        }}
-        onKeyDown={() => {
-          setShow(false);
-        }}
-        className="modal cursor-pointer"
-      >
-        {/* モーダルのメインボックス */}
-        <div
-          role="button"
-          tabIndex={0}
-          className="modal-box cursor-auto"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-          onKeyDown={(e) => {
-            e.stopPropagation();
-          }}
-        >
-          <div className="flex justify-between items-center mb-3">
-            {/* 閉じるボタン */}
-            <button
-              type="button"
-              className="btn btn-sm btn-circle"
-              onClick={() => {
-                setShow(false);
-              }}
-            >
-              <MdClose />
-            </button>
-
-            {/* ユーザ情報変更ボタン */}
-            <button
-              type="button"
-              className="btn btn-primary btn-sm"
-              onClick={async () => {
-                await handleSubmit();
-              }}
-              disabled={isSubmitting}
-            >
-              <FaPencilAlt className="mr-1" />
-              ユーザ情報を変更する
-            </button>
-          </div>
-
-          {/* 入力エリア */}
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text">名前</span>
-            </label>
-            <input
-              type="text"
-              className="input input-bordered w-full"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            />
-          </div>
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text">自己紹介文</span>
-            </label>
-            <textarea
-              className="textarea textarea-bordered w-full h-32 resize-none"
-              value={description}
-              onChange={(e) => {
-                setDescription(e.target.value);
-              }}
-            />
-          </div>
+          {/* ユーザ情報変更ボタン */}
+          <button
+            type="button"
+            className="btn btn-primary btn-sm"
+            onClick={async () => {
+              await handleSubmit();
+            }}
+            disabled={isSubmitting}
+          >
+            <FaPencilAlt className="mr-1" />
+            ユーザ情報を変更する
+          </button>
         </div>
-      </div>
+
+        {/* 入力エリア */}
+        <div className="form-control w-full">
+          <label className="label">
+            <span className="label-text">名前</span>
+          </label>
+          <input
+            type="text"
+            className="input input-bordered w-full"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          />
+        </div>
+        <div className="form-control w-full">
+          <label className="label">
+            <span className="label-text">自己紹介文</span>
+          </label>
+          <textarea
+            className="textarea textarea-bordered w-full h-32 resize-none"
+            value={description}
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
+          />
+        </div>
+      </Modal>
     </>
   );
 }
