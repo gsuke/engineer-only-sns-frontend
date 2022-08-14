@@ -3,6 +3,7 @@ import { FaPencilAlt } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
 import useNewTexts from '../hooks/useNewTexts';
 import { apiUrl } from '../lib/const';
+import FloatingButton from './FloatingButton';
 
 export default function PostForm() {
   const [show, setShow] = useState(false);
@@ -38,15 +39,15 @@ export default function PostForm() {
   return (
     <>
       {/* ボタン */}
-      <button
-        type="button"
-        className="btn btn-circle btn-lg btn-primary fixed right-3 bottom-3"
+      <FloatingButton
+        className="right-3 bottom-3"
         onClick={() => {
           setShow(true);
         }}
       >
         <FaPencilAlt size={32} />
-      </button>
+      </FloatingButton>
+
       <input
         type="checkbox"
         className="modal-toggle"

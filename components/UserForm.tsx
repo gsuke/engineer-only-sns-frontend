@@ -5,6 +5,7 @@ import { FaPencilAlt } from 'react-icons/fa';
 import axios from 'axios';
 import { useSWRConfig } from 'swr';
 import { apiUrl } from '../lib/const';
+import FloatingButton from './FloatingButton';
 
 export default function UserForm() {
   const [show, setShow] = useState(false);
@@ -41,15 +42,15 @@ export default function UserForm() {
   return (
     <>
       {/* ボタン */}
-      <button
-        type="button"
-        className="btn btn-circle btn-lg btn-primary fixed bottom-3 left-3"
+      <FloatingButton
+        className="bottom-3 left-3"
         onClick={() => {
           setShow(true);
         }}
       >
         <GrUserSettings size={32} />
-      </button>
+      </FloatingButton>
+
       <input
         type="checkbox"
         className="modal-toggle"
