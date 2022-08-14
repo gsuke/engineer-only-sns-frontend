@@ -40,7 +40,7 @@ export default function Modal({
         onKeyDown={() => {
           setShow(false);
         }}
-        className="modal cursor-pointer"
+        className="modal backdrop-blur-sm cursor-pointer"
       >
         {/* モーダルのメインボックス */}
         <div
