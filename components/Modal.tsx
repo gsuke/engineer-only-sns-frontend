@@ -2,8 +2,8 @@ import type { ReactNode } from 'react';
 import { MdClose } from 'react-icons/md';
 
 type Props = {
-  show: boolean;
-  setShow: (show: boolean) => void;
+  isShown: boolean;
+  setIsShown: (show: boolean) => void;
   enterButton: ReactNode;
   enterButtonOnClick: () => void;
   enterButtonDisabled: boolean;
@@ -11,8 +11,8 @@ type Props = {
 };
 
 export default function Modal({
-  show,
-  setShow,
+  isShown,
+  setIsShown,
   enterButton,
   enterButtonOnClick,
   enterButtonDisabled,
@@ -24,9 +24,9 @@ export default function Modal({
       <input
         type="checkbox"
         className="modal-toggle"
-        checked={show}
+        checked={isShown}
         onChange={() => {
-          setShow(false);
+          setIsShown(false);
         }}
       />
 
@@ -35,10 +35,10 @@ export default function Modal({
         role="button"
         tabIndex={0}
         onClick={() => {
-          setShow(false);
+          setIsShown(false);
         }}
         onKeyDown={() => {
-          setShow(false);
+          setIsShown(false);
         }}
         className="modal backdrop-blur-sm cursor-pointer"
       >
@@ -61,7 +61,7 @@ export default function Modal({
               type="button"
               className="btn btn-sm btn-circle"
               onClick={() => {
-                setShow(false);
+                setIsShown(false);
               }}
             >
               <MdClose />

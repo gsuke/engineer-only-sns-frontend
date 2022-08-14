@@ -6,7 +6,7 @@ import FloatingButton from './FloatingButton';
 import Modal from './Modal';
 
 export default function PostForm() {
-  const [show, setShow] = useState(false);
+  const [isShown, setIsShown] = useState(false);
   const [text, setText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -29,7 +29,7 @@ export default function PostForm() {
     }).then(async (response) => {
       if (response.ok) {
         await newTexts.mutate();
-        setShow(false);
+        setIsShown(false);
       }
     });
     setText('');
@@ -49,15 +49,15 @@ export default function PostForm() {
       <FloatingButton
         className="right-3 bottom-3"
         onClick={() => {
-          setShow(true);
+          setIsShown(true);
         }}
       >
         <FaPencilAlt size={32} />
       </FloatingButton>
 
       <Modal
-        show={show}
-        setShow={setShow}
+        isShown={isShown}
+        setIsShown={setIsShown}
         enterButton={enterButton}
         enterButtonOnClick={async () => {
           await handleSubmit();

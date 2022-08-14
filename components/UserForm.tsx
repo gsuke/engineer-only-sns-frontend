@@ -8,7 +8,7 @@ import FloatingButton from './FloatingButton';
 import Modal from './Modal';
 
 export default function UserForm() {
-  const [show, setShow] = useState(false);
+  const [isShown, setIsShown] = useState(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,7 +34,7 @@ export default function UserForm() {
       )
       .then(async (response) => {
         await mutate(`/user/${response.data.id}`);
-        setShow(false);
+        setIsShown(false);
       });
     setIsSubmitting(false);
   }
@@ -52,15 +52,15 @@ export default function UserForm() {
       <FloatingButton
         className="bottom-3 left-3"
         onClick={() => {
-          setShow(true);
+          setIsShown(true);
         }}
       >
         <GrUserSettings size={32} />
       </FloatingButton>
 
       <Modal
-        show={show}
-        setShow={setShow}
+        isShown={isShown}
+        setIsShown={setIsShown}
         enterButton={enterButton}
         enterButtonOnClick={async () => {
           await handleSubmit();
