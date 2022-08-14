@@ -1,6 +1,5 @@
 import { ChangeEvent, useState } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
-import { MdClose } from 'react-icons/md';
 import useNewTexts from '../hooks/useNewTexts';
 import { apiUrl } from '../lib/const';
 import FloatingButton from './FloatingButton';
@@ -37,6 +36,13 @@ export default function PostForm() {
     setIsSubmitting(false);
   }
 
+  const enterButton = (
+    <>
+      <FaPencilAlt className="mr-1" />
+      投稿
+    </>
+  );
+
   return (
     <>
       {/* ボタン */}
@@ -49,34 +55,15 @@ export default function PostForm() {
         <FaPencilAlt size={32} />
       </FloatingButton>
 
-      <Modal show={show} setShow={setShow}>
-        {/* 上部 */}
-        <div className="flex justify-between items-center mb-3">
-          {/* 閉じるボタン */}
-          <button
-            type="button"
-            className="btn btn-sm btn-circle"
-            onClick={() => {
-              setShow(false);
-            }}
-          >
-            <MdClose />
-          </button>
-
-          {/* 投稿ボタン */}
-          <button
-            type="button"
-            className="btn btn-primary btn-sm"
-            onClick={async () => {
-              await handleSubmit();
-            }}
-            disabled={isSubmitting}
-          >
-            <FaPencilAlt className="mr-1" />
-            投稿
-          </button>
-        </div>
-
+      <Modal
+        show={show}
+        setShow={setShow}
+        enterButton={enterButton}
+        enterButtonOnClick={async () => {
+          await handleSubmit();
+        }}
+        enterButtonDisabled={isSubmitting}
+      >
         {/* 入力エリア */}
         <textarea
           className="textarea textarea-bordered w-full h-32 resize-none"

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { GrUserSettings } from 'react-icons/gr';
-import { MdClose } from 'react-icons/md';
 import { FaPencilAlt } from 'react-icons/fa';
 import axios from 'axios';
 import { useSWRConfig } from 'swr';
@@ -40,6 +39,13 @@ export default function UserForm() {
     setIsSubmitting(false);
   }
 
+  const enterButton = (
+    <>
+      <FaPencilAlt className="mr-1" />
+      ユーザ情報を変更する
+    </>
+  );
+
   return (
     <>
       {/* ボタン */}
@@ -52,35 +58,16 @@ export default function UserForm() {
         <GrUserSettings size={32} />
       </FloatingButton>
 
-      <Modal show={show} setShow={setShow}>
-        {/* 上部 */}
-        <div className="flex justify-between items-center mb-3">
-          {/* 閉じるボタン */}
-          <button
-            type="button"
-            className="btn btn-sm btn-circle"
-            onClick={() => {
-              setShow(false);
-            }}
-          >
-            <MdClose />
-          </button>
-
-          {/* ユーザ情報変更ボタン */}
-          <button
-            type="button"
-            className="btn btn-primary btn-sm"
-            onClick={async () => {
-              await handleSubmit();
-            }}
-            disabled={isSubmitting}
-          >
-            <FaPencilAlt className="mr-1" />
-            ユーザ情報を変更する
-          </button>
-        </div>
-
-        {/* 入力エリア */}
+      <Modal
+        show={show}
+        setShow={setShow}
+        enterButton={enterButton}
+        enterButtonOnClick={async () => {
+          await handleSubmit();
+        }}
+        enterButtonDisabled={isSubmitting}
+      >
+        {/* 入力エリア - 名前 */}
         <div className="form-control w-full">
           <label className="label">
             <span className="label-text">名前</span>
@@ -94,6 +81,8 @@ export default function UserForm() {
             }}
           />
         </div>
+
+        {/* 入力エリア - 自己紹介文 */}
         <div className="form-control w-full">
           <label className="label">
             <span className="label-text">自己紹介文</span>
