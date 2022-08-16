@@ -5,6 +5,10 @@ import type Text from '../lib/models/Text';
 import { refreshInterval, textCountPerPage } from '../lib/const';
 import useOldTexts from './useOldTexts';
 
+/**
+ * useOldTextsで取得できない新規投稿を定期的に取得する。
+ * @param userId 投稿取得対象ユーザ。ただし、これを指定した場合は定期取得を行わない仕様としている。
+ */
 export default function useNewTexts(userId?: string) {
   const oldTexts = useOldTexts();
 
