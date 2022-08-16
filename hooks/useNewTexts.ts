@@ -3,10 +3,10 @@ import type { SWRConfiguration } from 'swr';
 import fetcher from '../lib/fetcher';
 import type Text from '../lib/models/Text';
 import { refreshInterval, textCountPerPage } from '../lib/const';
-import useTexts from './useTexts';
+import useOldTexts from './useOldTexts';
 
 export default function useNewTexts(userId?: string) {
-  const oldTexts = useTexts();
+  const oldTexts = useOldTexts();
 
   const config: SWRConfiguration = { refreshInterval };
 

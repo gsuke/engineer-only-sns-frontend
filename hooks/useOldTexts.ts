@@ -3,7 +3,7 @@ import fetcher from '../lib/fetcher';
 import type Text from '../lib/models/Text';
 import { textCountPerPage } from '../lib/const';
 
-export default function useTexts(userId?: string) {
+export default function useOldTexts(userId?: string) {
   const getKey: SWRInfiniteKeyLoader = (pageIndex, previousPageData: Text[] | null) => {
     // 最後に到達した場合
     if (previousPageData && !previousPageData.length) return null;

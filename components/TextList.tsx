@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import TextComponent from './Text';
 import useNewTexts from '../hooks/useNewTexts';
-import useTexts from '../hooks/useTexts';
+import useOldTexts from '../hooks/useOldTexts';
 import { maxPage } from '../lib/const';
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function TextList({ userId }: Props) {
-  const oldTexts = useTexts(userId);
+  const oldTexts = useOldTexts(userId);
   const newTexts = useNewTexts(userId);
 
   // 新規投稿が溜まった場合は1ページに戻し、再読み込みをかける
