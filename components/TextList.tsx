@@ -4,6 +4,7 @@ import TextComponent from './Text';
 import useNewTexts from '../hooks/useNewTexts';
 import useOldTexts from '../hooks/useOldTexts';
 import { maxPage } from '../lib/const';
+import LoadingIndicator from './LoadingIndicator';
 
 type Props = {
   userId?: string;
@@ -41,6 +42,11 @@ export default function TextList({ userId }: Props) {
   // 5ページ目以降は読み込まない
   const hasMore = !oldTexts.isReachingEnd && oldTexts.size < maxPage;
 
+  // 1ページ目のLoading表示
+  if (oldTexts.isLoading && oldTexts.size === 1) {
+    return <LoadingIndicator />;
+  }
+
   return (
     <InfiniteScroll
       dataLength={uniqueTexts.length}
@@ -48,7 +54,7 @@ export default function TextList({ userId }: Props) {
         await loadNextPage();
       }}
       hasMore={hasMore}
-      loader={<p>Loading</p>}
+      loader={<LoadingIndicator />}
     >
       {uniqueTexts.map((text) => (
         <TextComponent key={text.id} text={text} />
