@@ -31,13 +31,14 @@ export default function useNewTexts(userId?: string) {
 
   const newTexts = Array.from(newTextsMap.values());
 
-  const isTooManyTexts = newTexts.length >= textCountPerPage;
+  // 新規投稿がフェッチできる数を超えて溢れた場合に、trueになる
+  const TooManyNewTextsExist = newTexts.length >= textCountPerPage;
 
   return {
     texts: newTexts,
     error,
     mutate,
     isLoading: !error && !data,
-    isTooManyTexts,
+    TooManyNewTextsExist,
   };
 }
