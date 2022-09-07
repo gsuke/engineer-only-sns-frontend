@@ -29,15 +29,17 @@ export default function useNewTexts(userId?: string) {
     newTextsMap.delete(oldText.id);
   });
 
-  const newTexts = Array.from(newTextsMap.values());
+  // 新規投稿の配列を作る(ただしoldTextsが0件で読み込み完了していない場合は、新規投稿を無しとする)
+  const newTexts = oldTexts.texts.length === 0 ? [] : Array.from(newTextsMap.values());
 
-  const isTooManyTexts = newTexts.length >= textCountPerPage;
+  // 新規投稿がフェッチできる数を超えて溢れた場合に、trueになる
+  const TooManyNewTextsExist = newTexts.length >= textCountPerPage;
 
   return {
     texts: newTexts,
     error,
     mutate,
     isLoading: !error && !data,
-    isTooManyTexts,
+    TooManyNewTextsExist,
   };
 }

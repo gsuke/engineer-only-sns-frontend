@@ -17,12 +17,12 @@ export default function TextList({ userId }: Props) {
   // 新規投稿が溜まった場合は1ページに戻し、再読み込みをかける
   useEffect(() => {
     void (async () => {
-      if (newTexts.isTooManyTexts) {
+      if (newTexts.TooManyNewTextsExist) {
         await oldTexts.setSize(1);
         await oldTexts.mutate();
       }
     })();
-  }, [newTexts.isTooManyTexts, oldTexts]);
+  }, [newTexts.TooManyNewTextsExist, oldTexts]);
 
   async function loadNextPage() {
     if (oldTexts.isLoading) {
