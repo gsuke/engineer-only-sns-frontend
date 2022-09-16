@@ -1,4 +1,4 @@
-import Container from '../components/Container';
+import Container from '../components/atoms/Container';
 import NavBar from '../components/NavBar';
 import PostForm from '../components/PostForm';
 import TextList from '../components/TextList';

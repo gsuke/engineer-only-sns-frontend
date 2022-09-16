@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import Container from '../../components/Container';
+import Container from '../../components/atoms/Container';
 import NavBar from '../../components/NavBar';
 import TextList from '../../components/TextList';
 import UserAvatar from '../../components/UserAvatar';
