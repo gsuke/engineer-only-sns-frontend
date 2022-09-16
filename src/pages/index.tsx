@@ -1,8 +1,8 @@
 import Container from '../components/atoms/Container';
 import NavBar from '../components/molecules/NavBar';
-import PostForm from '../components/PostForm';
+import PostModal from '../components/organisms/modal/PostModal';
 import TextList from '../components/TextList';
-import UserForm from '../components/UserForm';
+import UserEditModal from '../components/organisms/modal/UserEditModal';
 
 export default function Home() {
   return (
@@ -11,8 +11,8 @@ export default function Home() {
       <Container>
         <TextList />
       </Container>
-      <UserForm />
-      <PostForm />
+      <UserEditModal />
+      <PostModal />
     </div>
   );
 }

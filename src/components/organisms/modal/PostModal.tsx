@@ -1,11 +1,11 @@
 import { ChangeEvent, useState } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
-import useNewTexts from '../hooks/useNewTexts';
-import { apiUrl } from '../lib/const';
-import PostButton from './atoms/button/floating-icon-button/PostButton';
-import BaseModal from './molecules/modal/BaseModal';
+import useNewTexts from '../../../hooks/useNewTexts';
+import { apiUrl } from '../../../lib/const';
+import PostButton from '../../atoms/button/floating-icon-button/PostButton';
+import BaseModal from '../../molecules/modal/BaseModal';
 
-export default function PostForm() {
+export default function PostModal() {
   const [isShown, setIsShown] = useState(false);
   const [text, setText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);

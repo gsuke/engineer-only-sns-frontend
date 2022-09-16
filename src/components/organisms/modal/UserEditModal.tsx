@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
 import axios from 'axios';
 import { useSWRConfig } from 'swr';
-import { apiUrl } from '../lib/const';
-import UserEditButton from './atoms/button/floating-icon-button/UserEditButton';
-import BaseModal from './molecules/modal/BaseModal';
+import { apiUrl } from '../../../lib/const';
+import UserEditButton from '../../atoms/button/floating-icon-button/UserEditButton';
+import BaseModal from '../../molecules/modal/BaseModal';
 
-export default function UserForm() {
+export default function UserEditModal() {
   const [isShown, setIsShown] = useState(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
