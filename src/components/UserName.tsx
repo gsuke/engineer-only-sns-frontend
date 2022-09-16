@@ -1,7 +1,7 @@
 import { FaQuestion } from 'react-icons/fa';
 import { BiError } from 'react-icons/bi';
-import { VscLoading } from 'react-icons/vsc';
 import useUser from '../hooks/useUser';
+import Spinner from './atoms/Spinner';
 
 type Props = {
   userId: string;
@@ -22,7 +22,7 @@ export default function UserName({ userId }: Props) {
   if (isLoading) {
     return (
       <span className="text-accent">
-        <VscLoading className="mr-1 animate-spin" />
+        <Spinner className="mr-1" />
         読み込み中
       </span>
     );
