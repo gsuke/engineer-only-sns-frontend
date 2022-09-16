@@ -3,7 +3,7 @@ import { FaPencilAlt } from 'react-icons/fa';
 import useNewTexts from '../hooks/useNewTexts';
 import { apiUrl } from '../lib/const';
 import PostButton from './atoms/button/floating-icon-button/PostButton';
-import Modal from './Modal';
+import BaseModal from './molecules/modal/BaseModal';
 
 export default function PostForm() {
   const [isShown, setIsShown] = useState(false);
@@ -36,7 +36,7 @@ export default function PostForm() {
     setIsSubmitting(false);
   }
 
-  const enterButton = (
+  const enterButtonText = (
     <>
       <FaPencilAlt className="mr-1" />
       投稿
@@ -52,10 +52,10 @@ export default function PostForm() {
         }}
       />
 
-      <Modal
+      <BaseModal
         isShown={isShown}
         setIsShown={setIsShown}
-        enterButton={enterButton}
+        enterButtonText={enterButtonText}
         enterButtonOnClick={async () => {
           await handleSubmit();
         }}
@@ -70,7 +70,7 @@ export default function PostForm() {
             handleChange(e);
           }}
         />
-      </Modal>
+      </BaseModal>
     </>
   );
 }

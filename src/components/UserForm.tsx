@@ -3,8 +3,8 @@ import { FaPencilAlt } from 'react-icons/fa';
 import axios from 'axios';
 import { useSWRConfig } from 'swr';
 import { apiUrl } from '../lib/const';
-import Modal from './Modal';
 import UserEditButton from './atoms/button/floating-icon-button/UserEditButton';
+import BaseModal from './molecules/modal/BaseModal';
 
 export default function UserForm() {
   const [isShown, setIsShown] = useState(false);
@@ -38,7 +38,7 @@ export default function UserForm() {
     setIsSubmitting(false);
   }
 
-  const enterButton = (
+  const enterButtonText = (
     <>
       <FaPencilAlt className="mr-1" />
       ユーザ情報を変更する
@@ -54,10 +54,10 @@ export default function UserForm() {
         }}
       />
 
-      <Modal
+      <BaseModal
         isShown={isShown}
         setIsShown={setIsShown}
-        enterButton={enterButton}
+        enterButtonText={enterButtonText}
         enterButtonOnClick={async () => {
           await handleSubmit();
         }}
@@ -91,7 +91,7 @@ export default function UserForm() {
             }}
           />
         </div>
-      </Modal>
+      </BaseModal>
     </>
   );
 }
