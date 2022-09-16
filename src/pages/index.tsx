@@ -1,5 +1,5 @@
 import Container from '../components/atoms/Container';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/molecules/NavBar';
 import PostForm from '../components/PostForm';
 import TextList from '../components/TextList';
 import UserForm from '../components/UserForm';
