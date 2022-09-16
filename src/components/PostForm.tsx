@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
 import useNewTexts from '../hooks/useNewTexts';
 import { apiUrl } from '../lib/const';
-import FloatingButton from './FloatingButton';
+import PostButton from './atoms/button/floating-icon-button/PostButton';
 import Modal from './Modal';
 
 export default function PostForm() {
@@ -46,14 +46,11 @@ export default function PostForm() {
   return (
     <>
       {/* ボタン */}
-      <FloatingButton
-        className="right-3 bottom-3"
+      <PostButton
         onClick={() => {
           setIsShown(true);
         }}
-      >
-        <FaPencilAlt size={32} />
-      </FloatingButton>
+      />
 
       <Modal
         isShown={isShown}

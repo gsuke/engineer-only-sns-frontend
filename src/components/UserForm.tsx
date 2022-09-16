@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { GrUserSettings } from 'react-icons/gr';
 import { FaPencilAlt } from 'react-icons/fa';
 import axios from 'axios';
 import { useSWRConfig } from 'swr';
 import { apiUrl } from '../lib/const';
-import FloatingButton from './FloatingButton';
 import Modal from './Modal';
+import UserEditButton from './atoms/button/floating-icon-button/UserEditButton';
 
 export default function UserForm() {
   const [isShown, setIsShown] = useState(false);
@@ -49,14 +48,11 @@ export default function UserForm() {
   return (
     <>
       {/* ボタン */}
-      <FloatingButton
-        className="bottom-3 left-3"
+      <UserEditButton
         onClick={() => {
           setIsShown(true);
         }}
-      >
-        <GrUserSettings size={32} />
-      </FloatingButton>
+      />
 
       <Modal
         isShown={isShown}
