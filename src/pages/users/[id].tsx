@@ -3,7 +3,7 @@ import Container from '../../components/atoms/Container';
 import NavBar from '../../components/molecules/NavBar';
 import TextList from '../../components/TextList';
 import UserAvatar from '../../components/atoms/UserAvatar';
-import UserName from '../../components/UserName';
+import UserName from '../../components/organisms/UserName';
 import useUser from '../../hooks/useUser';
 
 export default function UserPage() {
