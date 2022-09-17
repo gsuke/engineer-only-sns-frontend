@@ -1,8 +1,8 @@
-import useUser from '../../hooks/useUser';
-import UserNameError from '../molecules/user/UserNameError';
-import UserNameLoading from '../molecules/user/UserNameLoading';
-import UserNameAnonymous from '../molecules/user/UserNameAnonymous';
-import UserNameIdentified from '../molecules/user/UserNameIdentified';
+import useUser from '../../../hooks/useUser';
+import UserNameError from '../../molecules/user/UserNameError';
+import UserNameLoading from '../../molecules/user/UserNameLoading';
+import UserNameAnonymous from '../../molecules/user/UserNameAnonymous';
+import UserNameIdentified from '../../molecules/user/UserNameIdentified';
 
 type Props = {
   userId: string;
