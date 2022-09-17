@@ -5,10 +5,6 @@ type Props = {
   children: ReactNode;
 };
 
-export default function BaseUserName({ className, children }: Props) {
-  return <span className={`inline-flex items-center ${className ?? ''}`}>{children}</span>;
+export default function BaseUserName({ className = '', children }: Props) {
+  return <span className={`inline-flex items-center ${className}`}>{children}</span>;
 }
-
-BaseUserName.defaultProps = {
-  className: '',
-};

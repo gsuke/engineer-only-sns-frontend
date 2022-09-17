@@ -16,8 +16,3 @@ export default function Template({ floatingItems, children }: Props) {
     </>
   );
 }
-
-Template.defaultProps = {
-  floatingItems: null,
-  children: null,
-};
