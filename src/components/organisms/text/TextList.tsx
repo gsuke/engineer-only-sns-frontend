@@ -62,7 +62,3 @@ export default function TextList({ userId }: Props) {
     </InfiniteScroll>
   );
 }
-
-TextList.defaultProps = {
-  userId: undefined,
-};
