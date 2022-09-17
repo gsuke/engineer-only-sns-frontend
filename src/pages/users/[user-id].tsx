@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
-import Container from '../../components/atoms/Container';
-import NavBar from '../../components/molecules/NavBar';
 import TextList from '../../components/organisms/text/TextList';
 import UserProfile from '../../components/organisms/user/UserProfile';
+import Template from '../../components/templates/Template';
 
 export default function UserPage() {
   const router = useRouter();
@@ -14,12 +13,9 @@ export default function UserPage() {
   }
 
   return (
-    <div>
-      <NavBar />
-      <Container>
-        <UserProfile userId={userId} />
-        <TextList userId={userId} />
-      </Container>
-    </div>
+    <Template>
+      <UserProfile userId={userId} />
+      <TextList userId={userId} />
+    </Template>
   );
 }

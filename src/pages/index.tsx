@@ -1,18 +1,19 @@
-import Container from '../components/atoms/Container';
-import NavBar from '../components/molecules/NavBar';
 import PostModal from '../components/organisms/modal/PostModal';
 import TextList from '../components/organisms/text/TextList';
 import UserEditModal from '../components/organisms/modal/UserEditModal';
+import Template from '../components/templates/Template';
 
-export default function Home() {
-  return (
-    <div>
-      <NavBar />
-      <Container>
-        <TextList />
-      </Container>
+export default function Index() {
+  const floatingItems = (
+    <>
       <UserEditModal />
       <PostModal />
-    </div>
+    </>
+  );
+
+  return (
+    <Template floatingItems={floatingItems}>
+      <TextList />
+    </Template>
   );
 }
