@@ -1,8 +1,8 @@
 import { format, parseISO } from 'date-fns';
-import type TextType from '../lib/models/Text';
-import UserAvatar from './atoms/UserAvatar';
-import UserLink from './UserLink';
-import UserName from './organisms/UserName';
+import type TextType from '../../../lib/models/Text';
+import UserAvatar from '../../atoms/UserAvatar';
+import UserLink from '../../atoms/UserLink';
+import UserName from '../UserName';
 
 type Props = {
   text: TextType;
