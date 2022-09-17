@@ -12,7 +12,7 @@ export default function UserName({ userId }: Props) {
 
   if (error) {
     return (
-      <span className="text-accent">
+      <span className="text-accent inline-flex items-center">
         <BiError className="mr-1" />
         読み込みエラー
       </span>
@@ -21,7 +21,7 @@ export default function UserName({ userId }: Props) {
 
   if (isLoading) {
     return (
-      <span className="text-accent">
+      <span className="text-accent inline-flex items-center">
         <Spinner className="mr-1" />
         読み込み中
       </span>
@@ -30,12 +30,12 @@ export default function UserName({ userId }: Props) {
 
   if (!user?.name) {
     return (
-      <span className="text-primary">
+      <span className="text-primary inline-flex items-center">
         <FaQuestion className="mr-1" />
         名無し
       </span>
     );
   }
 
-  return <span className="text-primary">{user?.name}</span>;
+  return <span className="text-primary inline-flex items-center">{user?.name}</span>;
 }
