@@ -28,12 +28,13 @@ link:https://qiita.com/HawkClaws/items/599d7666f55e79ef7f56[「エンジニア�
 * daisyUI
 * SWR
 
-=== Lint / CI
+=== Lint / CI / CD
 
 * ESLint
 * Prettier
 * EditorConfig
 * GitHub Actions
+* Vercel
 
 == 開発
 
@@ -43,6 +44,7 @@ link:https://qiita.com/HawkClaws/items/599d7666f55e79ef7f56[「エンジニア�
 * Yarn (v1)
 * VSCode (+ 推奨拡張機能)
 
-=== ローカル実行
+=== ローカル実行の方法
 
-`yarn dev`
+. `yarn`
+. `yarn dev`
