@@ -1,18 +1,19 @@
-import Container from '../components/Container';
-import NavBar from '../components/NavBar';
-import PostForm from '../components/PostForm';
-import TextList from '../components/TextList';
-import UserForm from '../components/UserForm';
+import PostModal from '../components/organisms/modal/PostModal';
+import TextList from '../components/organisms/text/TextList';
+import UserEditModal from '../components/organisms/modal/UserEditModal';
+import Template from '../components/templates/Template';
 
-export default function Home() {
+export default function Index() {
+  const floatingItems = (
+    <>
+      <UserEditModal />
+      <PostModal />
+    </>
+  );
+
   return (
-    <div>
-      <NavBar />
-      <Container>
-        <TextList />
-      </Container>
-      <UserForm />
-      <PostForm />
-    </div>
+    <Template floatingItems={floatingItems}>
+      <TextList />
+    </Template>
   );
 }

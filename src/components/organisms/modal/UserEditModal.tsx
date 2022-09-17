@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { GrUserSettings } from 'react-icons/gr';
 import { FaPencilAlt } from 'react-icons/fa';
 import axios from 'axios';
 import { useSWRConfig } from 'swr';
-import { apiUrl } from '../lib/const';
-import FloatingButton from './FloatingButton';
-import Modal from './Modal';
+import { apiUrl } from '../../../lib/const';
+import UserEditButton from '../../atoms/button/floating-icon-button/UserEditButton';
+import BaseModal from '../../molecules/modal/BaseModal';
 
-export default function UserForm() {
+export default function UserEditModal() {
   const [isShown, setIsShown] = useState(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -39,7 +38,7 @@ export default function UserForm() {
     setIsSubmitting(false);
   }
 
-  const enterButton = (
+  const enterButtonText = (
     <>
       <FaPencilAlt className="mr-1" />
       ユーザ情報を変更する
@@ -49,19 +48,16 @@ export default function UserForm() {
   return (
     <>
       {/* ボタン */}
-      <FloatingButton
-        className="bottom-3 left-3"
+      <UserEditButton
         onClick={() => {
           setIsShown(true);
         }}
-      >
-        <GrUserSettings size={32} />
-      </FloatingButton>
+      />
 
-      <Modal
+      <BaseModal
         isShown={isShown}
         setIsShown={setIsShown}
-        enterButton={enterButton}
+        enterButtonText={enterButtonText}
         enterButtonOnClick={async () => {
           await handleSubmit();
         }}
@@ -95,7 +91,7 @@ export default function UserForm() {
             }}
           />
         </div>
-      </Modal>
+      </BaseModal>
     </>
   );
 }

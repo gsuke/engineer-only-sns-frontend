@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import TextComponent from './Text';
-import useNewTexts from '../hooks/useNewTexts';
-import useOldTexts from '../hooks/useOldTexts';
-import { maxPage } from '../lib/const';
-import LoadingIndicator from './LoadingIndicator';
+import useNewTexts from '../../../hooks/useNewTexts';
+import useOldTexts from '../../../hooks/useOldTexts';
+import { maxPage } from '../../../lib/const';
+import LoadingIndicator from '../../molecules/LoadingIndicator';
 
 type Props = {
   userId?: string;

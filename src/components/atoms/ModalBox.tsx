@@ -1,23 +1,12 @@
 import type { ReactNode } from 'react';
-import { MdClose } from 'react-icons/md';
 
 type Props = {
   isShown: boolean;
   setIsShown: (show: boolean) => void;
-  enterButton: ReactNode;
-  enterButtonOnClick: () => void;
-  enterButtonDisabled: boolean;
   children: ReactNode;
 };
 
-export default function Modal({
-  isShown,
-  setIsShown,
-  enterButton,
-  enterButtonOnClick,
-  enterButtonDisabled,
-  children,
-}: Props) {
+export default function ModalBox({ isShown, setIsShown, children }: Props) {
   return (
     <>
       {/* 表示/非表示 を保持するチェックボックス */}
@@ -54,30 +43,6 @@ export default function Modal({
             e.stopPropagation();
           }}
         >
-          {/* 上部: 閉じるボタン + 決定ボタン */}
-          <div className="flex justify-between items-center mb-3">
-            {/* 閉じるボタン */}
-            <button
-              type="button"
-              className="btn btn-sm btn-circle"
-              onClick={() => {
-                setIsShown(false);
-              }}
-            >
-              <MdClose />
-            </button>
-
-            {/* 投稿ボタン */}
-            <button
-              type="button"
-              className="btn btn-primary btn-sm"
-              onClick={enterButtonOnClick}
-              disabled={enterButtonDisabled}
-            >
-              {enterButton}
-            </button>
-          </div>
-
           {children}
         </div>
       </div>
